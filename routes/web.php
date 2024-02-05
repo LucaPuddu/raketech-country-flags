@@ -14,3 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'welcome');
+
+Route::get('/test', function () {
+    if (! auth()->check()) {
+        return response('You are not logged in.');
+    }
+
+    $user = auth()->user();
+    $name = $user->name ?? 'User';
+    $email = $user->email ?? '';
+
+    return response("Hello {$name}! Your email address is {$email}.");
+});
