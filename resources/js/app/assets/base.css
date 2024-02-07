@@ -1,32 +1,31 @@
-/* color palette from <https://github.com/vuejs/theme> */
 :root {
-  --vt-c-white: #ffffff;
-  --vt-c-black: #181818;
-  --vt-c-indigo: #2c3e50;
-  --vt-c-text-light-1: var(--vt-c-indigo);
-  --vt-c-text-dark-1: var(--vt-c-white);
-  --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+    --color-brand: #2F3C7E;
+    --color-accent: #FBEAEB;
+
+    --color-neutral-100: #fcf6f5;
+    --color-neutral-200: #c2bdbe;
+    --color-neutral-300: #a5a1a3;
+    --color-neutral-400: #878487;
+    --color-neutral-500: #4c4b50;
+    --color-neutral-600: #2f2f34;
+    --color-neutral-700: #111218;
+
+    --color-neutral: var(--color-neutral-400);
 }
 
-/* semantic color variables for this project */
 :root {
-  --color-background: var(--vt-c-white);
-  --color-text: var(--vt-c-text-light-1);
+    --color-text: var(--color-neutral-700);
+    --color-background: var(--color-neutral-100);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-background: var(--vt-c-black);
-    --color-text: var(--vt-c-text-dark-2);
+      --color-text: var(--color-neutral-100);
+      --color-background: var(--color-neutral-700);
   }
 }
 
 body {
-  min-height: 100vh;
   color: var(--color-text);
   background: var(--color-background);
-  transition:
-    color 0.5s,
-    background-color 0.5s;
-  line-height: 1.6;
 }
