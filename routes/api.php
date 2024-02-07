@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CountryController;
 use Illuminate\Support\Facades\Route;
+use Tightenco\Ziggy\Ziggy;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/countries', [CountryController::class, 'list'])->middleware('auth:api')->name('countries');
+Route::get('/routes', fn () => response()->json(new Ziggy))->name('routes');
+
