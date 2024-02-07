@@ -4,4 +4,4 @@ declare module 'ziggy-js' {
     'api.countries': []
   }
 }
-export { Ziggy, ZiggyVue }
+export { ZiggyVue, init, route }

@@ -29,7 +29,11 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         $this->routes(function () {
-            Route::middleware('api')
+            /*
+             * We need session-based Auth0 authentication, so we reuse the 'web' middleware.
+             * If in the future we need token-based auth, we can create a new file and use the 'api' middleware for it.
+             */
+            Route::middleware('web')
                 ->prefix('api')
                 ->name('api.')
                 ->group(base_path('routes/api.php'));

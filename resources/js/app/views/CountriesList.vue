@@ -1,11 +1,21 @@
 <script setup lang="ts">
-import { inject } from 'vue'
+import { onBeforeMount, ref } from 'vue'
+import { useCountryStore } from '@/app/stores/country'
 
-const route: Function | undefined = inject('appRoute')
+const store = useCountryStore()
+const countries = ref([])
+
+onBeforeMount(async () => {
+  countries.value = await store.list()
+})
 </script>
 
 <template>
-  Test <template v-if="route">{{ route('api.countries') }}</template>
+  <ul v-if="countries.length">
+    <li v-for="country in countries" :key="country.code"></li>
+  </ul>
+
+  <p v-else>Loading...</p>
 </template>
 
 <style scoped></style>
