@@ -10,40 +10,29 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
-class RestCountriesCountryProvider implements IsCountryProvider
+class RestCountriesCountryProvider extends AbstractCountryProvider
 {
-    protected function fallbackToStatic(): bool
-    {
-        return false;
-    }
+    public const bool PREFETCH = true;
+    protected const string URL = 'https://restcountries.com/v3.1/all?fields=name,flags,code,cca2';
 
     /**
      * @throws UnexpectedCountriesFormatException
      */
     public function fetch(): Collection
     {
-        $response = Http::get('https://restcountries.com/v3.1/all?fields=name,flags,code,cca2');
-
-        $fallbackToStatic = $this->fallbackToStatic();
+        // Nothing found. Go on querying the API
+        $response = Http::get(self::URL);
 
         if ($response->failed()) {
             Log::error($response->body());
 
-            if (!$fallbackToStatic) {
-                abort($response->status(), 'There was a problem contacting the RestCountries API.');
-            }
-
-            // TODO: fallback to static implementation
+            abort($response->status(), 'There was a problem contacting the RestCountries API.');
         }
 
         [$isValid, $validatedData] = $this->validateResponse($response);
 
         if (!$isValid) {
-            if (!$fallbackToStatic) {
-                throw new UnexpectedCountriesFormatException("Unexpected format received from RestCountries API");
-            }
-
-            // TODO: fallback to static implementation
+            throw new UnexpectedCountriesFormatException("Unexpected format received from RestCountries API");
         }
 
         return $this->transformReceivedData($validatedData);

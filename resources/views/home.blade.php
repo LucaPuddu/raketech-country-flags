@@ -9,7 +9,7 @@
 
         @vite('resources/js/app/main.ts')
     </head>
-    <body id="app">
-
+    <body>
+        <div id="app"></div>
     </body>
 </html>

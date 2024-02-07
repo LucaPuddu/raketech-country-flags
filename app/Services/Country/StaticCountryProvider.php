@@ -4,7 +4,7 @@ namespace App\Services\Country;
 
 use Illuminate\Support\Collection;
 
-class StaticCountryProvider implements IsCountryProvider
+class StaticCountryProvider extends AbstractCountryProvider
 {
     public function fetch(): Collection
     {

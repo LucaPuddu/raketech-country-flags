@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Country\IsCountryProvider;
+use App\Services\CountryService;
 use Illuminate\Http\JsonResponse;
 
 class CountryController
 {
-    public function list(IsCountryProvider $provider): JsonResponse
+    public function list(CountryService $service): JsonResponse
     {
-        return response()->json($provider->fetch());
+        return response()->json($service->list());
     }
 }

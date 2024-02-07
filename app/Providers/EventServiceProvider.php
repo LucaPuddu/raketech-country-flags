@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\CountriesCacheMiss;
+use App\Listeners\CacheCountries;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -12,6 +14,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
+        CountriesCacheMiss::class => [
+            CacheCountries::class
+        ]
     ];
 
     /**
