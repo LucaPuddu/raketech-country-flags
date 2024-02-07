@@ -1,9 +1,5 @@
 <?php
 
-use App\Http\Controllers\CountryController;
-use Illuminate\Support\Facades\Route;
-use Tightenco\Ziggy\Ziggy;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,6 +11,9 @@ use Tightenco\Ziggy\Ziggy;
 |
 */
 
-Route::get('/countries', [CountryController::class, 'list'])->middleware('auth:api')->name('countries');
-Route::get('/routes', fn () => response()->json(new Ziggy))->name('routes');
+use App\Http\Controllers\CountryController;
+use Illuminate\Support\Facades\Route;
+use Tightenco\Ziggy\Ziggy;
 
+Route::get('/countries', [CountryController::class, 'list'])->middleware('auth')->name('countries');
+Route::get('/routes', fn () => response()->json(new Ziggy))->name('routes');

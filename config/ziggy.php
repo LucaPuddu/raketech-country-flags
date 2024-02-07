@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'only' => ['api.*']
+    'only' => ['api.*', 'login', 'logout']
 ];
