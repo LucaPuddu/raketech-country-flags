@@ -44,12 +44,12 @@ class CountryService
     {
         $provider = app(AbstractCountryProvider::class);
 
-        Country::upsert(
+        Country::query()->forceDelete();
+        Country::query()->insert(
             $countries
-            ->map(fn(array $country) => $provider->toCountryAttributes($country))
-            ->values()
-            ->toArray(),
-            'code'
+                ->map(fn(array $country) => $provider->toCountryAttributes($country))
+                ->values()
+                ->toArray()
         );
 
         Cache::forever(self::CACHE_KEY_LIST, $countries->values());
