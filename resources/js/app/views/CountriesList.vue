@@ -8,7 +8,7 @@ interface Country {
   flag: {
     url?: string | null
     alt?: string | null
-  }[]
+  }
 }
 
 const store = useCountryStore()
@@ -42,7 +42,7 @@ onMounted(() => {
       <li v-for="(country, i) in countries" :key="country.code">
         <img
           :loading="i > lazyLoadAfter ? 'lazy' : undefined"
-          :src="country.flag?.url"
+          :src="country.flag?.url ?? undefined"
           :alt="country.flag?.alt ?? country.name"
           class="mx-auto"
           :width="minimumFlagSize"
