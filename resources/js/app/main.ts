@@ -3,6 +3,7 @@ import './assets/app.css'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { ZiggyVue, init as initZiggy } from '@/ziggy.js'
+import { init as initTheme } from '@/app/services/theme'
 
 import App from './App.vue'
 import router from './router'
@@ -18,4 +19,6 @@ async function initApp() {
 
   app.mount('#app')
 }
+
+initTheme()
 initApp()
