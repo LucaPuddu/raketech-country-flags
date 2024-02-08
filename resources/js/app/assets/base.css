@@ -1,6 +1,7 @@
 :root {
     --color-brand: #2F3C7E;
     --color-accent: #FBEAEB;
+    --color-brand-dark: #7281c2;
 
     --color-neutral-100: #fcf6f5;
     --color-neutral-200: #c2bdbe;
@@ -18,11 +19,11 @@
     --color-background: var(--color-neutral-100);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-      --color-text: var(--color-neutral-100);
-      --color-background: var(--color-neutral-700);
-  }
+html.dark {
+    &:root {
+        --color-text: var(--color-neutral-100);
+        --color-background: var(--color-neutral-700);
+    }
 }
 
 body {
