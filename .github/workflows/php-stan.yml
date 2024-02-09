@@ -1,9 +1,9 @@
 name: PHPStan
 on:
-  workflow_dispatch:
   push:
-    branches-ignore:
-      - 'dependabot/npm_and_yarn/*'
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 jobs:
   PHPStan:
     runs-on: ubuntu-latest
