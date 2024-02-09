@@ -1,9 +1,4 @@
 name: Tests
-
-defaults:
-  run:
-    working-directory: src
-
 on:
   push:
     branches: [ master ]
