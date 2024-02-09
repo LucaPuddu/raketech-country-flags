@@ -27,7 +27,7 @@ jobs:
         run: |
           mkdir -p database
           touch database/database.sqlite
-          
+
       - name: Install JS dependencies
         run: npm install
       - name: Compile frontend assets
@@ -36,6 +36,9 @@ jobs:
       - name: PHPUnit Tests
         uses: php-actions/phpunit@v3
         env:
+          AUTH0_DOMAIN: ${{secrets.PROD_AUTH0_DOMAIN}}
+          AUTH0_CLIENT_ID: ${{secrets.PROD_AUTH0_CLIENT_ID}}
+          AUTH0_CLIENT_SECRET: ${{secrets.PROD_AUTH0_CLIENT_SECRET}}
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
         with:
