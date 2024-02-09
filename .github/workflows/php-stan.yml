@@ -1,11 +1,11 @@
-name: Larastan Check
+name: PHPStan
 on:
   workflow_dispatch:
   push:
     branches-ignore:
       - 'dependabot/npm_and_yarn/*'
 jobs:
-  Pint:
+  PHPStan:
     runs-on: ubuntu-latest
     steps:
       - name: Setup PHP
@@ -17,5 +17,5 @@ jobs:
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - name: Install Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-      - name: Larastan Check
+      - name: PHPStan Check
         run: ./vendor/bin/phpstan analyse
