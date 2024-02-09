@@ -4,6 +4,7 @@ on:
   push:
     branches-ignore:
       - 'dependabot/npm_and_yarn/*'
+      - 'master'
 jobs:
   Pint:
     runs-on: ubuntu-latest
