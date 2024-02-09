@@ -44,6 +44,7 @@ jobs:
         with:
           bootstrap: vendor/autoload.php
           configuration: phpunit.xml
-          args: --coverage-text
           version: '10.1'
           php_version: '8.3'
+          php_extensions: xdebug
+          args: --coverage-text
