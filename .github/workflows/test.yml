@@ -27,6 +27,11 @@ jobs:
         run: |
           mkdir -p database
           touch database/database.sqlite
+          
+      - name: Install JS dependencies
+        run: npm install
+      - name: Compile frontend assets
+        run: npm run prod
 
       - name: PHPUnit Tests
         uses: php-actions/phpunit@v3
