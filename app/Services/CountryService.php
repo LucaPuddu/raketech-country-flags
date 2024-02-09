@@ -25,7 +25,7 @@ class CountryService
         $countries = Cache::get(self::CACHE_KEY_LIST);
 
         // We transform each model to a different format
-        if (!($countries instanceof Collection) || $countries->isEmpty()) {
+        if (! ($countries instanceof Collection) || $countries->isEmpty()) {
             $countries = Country::all()->map->toResponsable();
 
             // Take countermeasures, asynchronously
@@ -47,7 +47,7 @@ class CountryService
         Country::query()->forceDelete();
         Country::query()->insert(
             $countries
-                ->map(fn(array $country) => $provider->toCountryAttributes($country))
+                ->map(fn (array $country) => $provider->toCountryAttributes($country))
                 ->values()
                 ->toArray()
         );
@@ -58,12 +58,12 @@ class CountryService
     public function toResponsable(Country $country): array
     {
         return [
-            "name" => $country->name,
-            "code" => $country->code,
-            "flag" => [
-                "url" => $country->flag_url,
-                "alt" => $country->flag_alt
-            ]
+            'name' => $country->name,
+            'code' => $country->code,
+            'flag' => [
+                'url' => $country->flag_url,
+                'alt' => $country->flag_alt,
+            ],
         ];
     }
 }

@@ -14,12 +14,12 @@ enum CountryProvider: int
     public static function fromName(string $name): self
     {
         foreach (self::cases() as $status) {
-            if( $name === $status->name ){
+            if ($name === $status->name) {
                 return $status;
             }
         }
 
-        throw new ValueError("$name is not a valid backing value for enum " . self::class );
+        throw new ValueError("$name is not a valid backing value for enum ".self::class);
     }
 
     public function implementation(): string
