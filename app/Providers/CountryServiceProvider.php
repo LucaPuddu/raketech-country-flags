@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Enums\CountryProvider;
+use App\Services\Country\CountryProvider as CountryProviderInterface;
 use Illuminate\Support\ServiceProvider;
 
 class CountryServiceProvider extends ServiceProvider
@@ -12,7 +13,7 @@ class CountryServiceProvider extends ServiceProvider
         $provider = CountryProvider::fromName(config('countries.provider'));
 
         app()->singleton(
-            \App\Services\Country\CountryProvider::class,
+            CountryProviderInterface::class,
             $provider->implementation()
         );
     }
