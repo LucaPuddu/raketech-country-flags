@@ -47,4 +47,4 @@ jobs:
           version: '10.1'
           php_version: '8.3'
           php_extensions: xdebug
-          args: --coverage-text
+          #args: --coverage-text
