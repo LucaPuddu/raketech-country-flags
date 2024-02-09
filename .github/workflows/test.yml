@@ -15,7 +15,6 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
-          coverage: xdebug
       - uses: actions/checkout@v3
       - uses: php-actions/composer@v6
 
@@ -41,6 +40,7 @@ jobs:
           AUTH0_CLIENT_SECRET: ${{secrets.PROD_AUTH0_CLIENT_SECRET}}
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
+          XDEBUG_MODE: coverage
         with:
           bootstrap: vendor/autoload.php
           configuration: phpunit.xml
