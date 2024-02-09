@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Services\Country\AbstractCountryProvider;
+use App\Services\Country\CountryProvider;
 use App\Services\Country\StaticCountryProvider;
 use App\Services\CountryService;
 use Exception;
@@ -17,7 +17,7 @@ class PrefetchCountries implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public function handle(AbstractCountryProvider $provider, CountryService $countryService): void
+    public function handle(CountryProvider $provider, CountryService $countryService): void
     {
         $countries = collect();
 

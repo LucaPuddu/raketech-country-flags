@@ -5,7 +5,7 @@ namespace App\Services\Country;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
-abstract class AbstractCountryProvider
+abstract class AbstractCountryProvider implements CountryProvider
 {
     public const bool PREFETCH = false;
 
