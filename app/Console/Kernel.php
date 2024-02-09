@@ -3,7 +3,7 @@
 namespace App\Console;
 
 use App\Jobs\PrefetchCountries;
-use App\Services\Country\AbstractCountryProvider;
+use App\Services\Country\CountryProvider;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        if (app(AbstractCountryProvider::class)::PREFETCH) {
+        if (app(CountryProvider::class)::PREFETCH) {
             // TODO: validate env value
             $fetchCountriesCron = config('countries.prefetch_cron');
 

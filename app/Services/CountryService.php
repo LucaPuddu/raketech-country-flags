@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Events\CountriesCacheMiss;
 use App\Models\Country;
-use App\Services\Country\AbstractCountryProvider;
+use App\Services\Country\CountryProvider;
 use App\Services\Country\StaticCountryProvider;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
@@ -42,7 +42,7 @@ class CountryService
 
     public function replaceAll(Collection $countries): void
     {
-        $provider = app(AbstractCountryProvider::class);
+        $provider = app(CountryProvider::class);
 
         Country::query()->forceDelete();
         Country::query()->insert(
