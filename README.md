@@ -67,5 +67,16 @@ load the countries from the chosen API at regular intervals and cache them for f
 
 You can customize the interval of pre-fetching by setting the value of `PREFETCH_CRON` .env variable to a [valid cron string](https://crontab.guru/).
 
-## Test
+## Code quality
+### Lint
+`sail composer lint`
+OR
+`vendor/bin/pint`
+
+### Static analysis
+`sail composer larastan`
+OR
+`vendor/bin/phpstan analyse`
+
+### Tests
 You can run `sail artisan test` to run the backend test suite
