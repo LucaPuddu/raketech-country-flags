@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/{path?}', 'home')
     ->middleware('auth')
+    ->name('home')
     ->where('path', '[\/\w\.-]*');
 
 //Route::get('/test', function () {

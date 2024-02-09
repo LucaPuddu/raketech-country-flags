@@ -29,7 +29,8 @@ class RestCountriesCountryProvider extends AbstractCountryProvider
             abort($response->status(), 'There was a problem contacting the RestCountries API.');
         }
 
-        [$isValid, $validatedData] = $this->validateResponse($response);
+        $data = $response->json();
+        [$isValid, $validatedData] = $this->validateResponse($data);
 
         if (!$isValid) {
             throw new UnexpectedCountriesFormatException("Unexpected format received from RestCountries API");
@@ -38,10 +39,8 @@ class RestCountriesCountryProvider extends AbstractCountryProvider
         return $this->transformReceivedData($validatedData);
     }
 
-    public function validateResponse(Response $response): array
+    protected function validateResponse(mixed $data): array
     {
-        $data = $response->json();
-
         if (!is_array($data)) {
             return [false, null];
         }
@@ -58,12 +57,12 @@ class RestCountriesCountryProvider extends AbstractCountryProvider
         );
 
         return [
-            $validator->valid(),
-            $validator->valid() ? $response->json() : null
+            $validator->passes(),
+            $validator->passes() ? $data : null
         ];
     }
 
-    private function transformReceivedData(array $data): Collection
+    protected function transformReceivedData(array $data): Collection
     {
         return collect($data)
             ->map(fn (array $country) => [
