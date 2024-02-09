@@ -6,7 +6,6 @@ use App\Jobs\PrefetchCountries;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-
 class CacheCountries implements ShouldQueue
 {
     use InteractsWithQueue;

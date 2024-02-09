@@ -28,7 +28,7 @@ class PrefetchCountries implements ShouldQueue
         }
 
         // Fallback to static values
-        if (!($countries instanceof Collection) || $countries->isEmpty()) {
+        if (! ($countries instanceof Collection) || $countries->isEmpty()) {
             $countries = app(StaticCountryProvider::class)->fetch();
         }
 

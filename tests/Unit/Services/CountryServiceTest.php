@@ -168,12 +168,12 @@ class CountryServiceTest extends TestCase
         // Assert
         $this->assertEquals(
             [
-                "name" => $country->name,
-                "code" => $country->code,
-                "flag" => [
-                    "url" => $country->flag_url,
-                    "alt" => $country->flag_alt
-                ]
+                'name' => $country->name,
+                'code' => $country->code,
+                'flag' => [
+                    'url' => $country->flag_url,
+                    'alt' => $country->flag_alt,
+                ],
             ],
             $responsable
         );
@@ -193,12 +193,12 @@ class CountryServiceTest extends TestCase
         // Assert
         $this->assertEquals(
             [
-                "name" => $country->name,
-                "code" => $country->code,
-                "flag" => [
-                    "url" => null,
-                    "alt" => null
-                ]
+                'name' => $country->name,
+                'code' => $country->code,
+                'flag' => [
+                    'url' => null,
+                    'alt' => null,
+                ],
             ],
             $responsable
         );

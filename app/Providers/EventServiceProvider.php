@@ -15,8 +15,8 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         CountriesCacheMiss::class => [
-            CacheCountries::class
-        ]
+            CacheCountries::class,
+        ],
     ];
 
     /**

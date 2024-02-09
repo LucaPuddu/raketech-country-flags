@@ -3,7 +3,6 @@
 namespace App\Services\Country;
 
 use App\Exceptions\UnexpectedCountriesFormatException;
-use Illuminate\Http\Client\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
@@ -13,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 class RestCountriesCountryProvider extends AbstractCountryProvider
 {
     public const bool PREFETCH = true;
+
     protected const string URL = 'https://restcountries.com/v3.1/all?fields=name,flags,code,cca2';
 
     /**
@@ -32,8 +32,8 @@ class RestCountriesCountryProvider extends AbstractCountryProvider
         $data = $response->json();
         [$isValid, $validatedData] = $this->validateResponse($data);
 
-        if (!$isValid) {
-            throw new UnexpectedCountriesFormatException("Unexpected format received from RestCountries API");
+        if (! $isValid) {
+            throw new UnexpectedCountriesFormatException('Unexpected format received from RestCountries API');
         }
 
         return $this->transformReceivedData($validatedData);
@@ -41,7 +41,7 @@ class RestCountriesCountryProvider extends AbstractCountryProvider
 
     protected function validateResponse(mixed $data): array
     {
-        if (!is_array($data)) {
+        if (! is_array($data)) {
             return [false, null];
         }
 
@@ -58,7 +58,7 @@ class RestCountriesCountryProvider extends AbstractCountryProvider
 
         return [
             $validator->passes(),
-            $validator->passes() ? $data : null
+            $validator->passes() ? $data : null,
         ];
     }
 
@@ -66,12 +66,12 @@ class RestCountriesCountryProvider extends AbstractCountryProvider
     {
         return collect($data)
             ->map(fn (array $country) => [
-                "name" => $country['name']['common'],
-                "code" => $country['cca2'],
-                "flag" => [
-                    "url" => Arr::get($country, 'flags.svg'),
-                    "alt" => Arr::get($country, 'flags.alt')
-                ]
+                'name' => $country['name']['common'],
+                'code' => $country['cca2'],
+                'flag' => [
+                    'url' => Arr::get($country, 'flags.svg'),
+                    'alt' => Arr::get($country, 'flags.alt'),
+                ],
             ])
             ->values();
     }

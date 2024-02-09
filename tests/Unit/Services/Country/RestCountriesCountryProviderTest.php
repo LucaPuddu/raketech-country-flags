@@ -35,40 +35,40 @@ class RestCountriesCountryProviderTest extends TestCase
                 'cca2' => 'Lorem ipsum',
                 'flags' => [
                     'svg' => 'http://dfsdf.com/sdfsdf.svg',
-                    'alt' => 'Dolor sit amet'
-                ]
-            ]
+                    'alt' => 'Dolor sit amet',
+                ],
+            ],
         ];
 
         $withoutName2 = [
             [
                 'cca2' => 'Lorem ipsum',
                 'name' => [
-                    'a random key' => 'Lorem ipsum'
+                    'a random key' => 'Lorem ipsum',
                 ],
                 'flags' => [
                     'svg' => 'http://dfsdf.com/sdfsdf.svg',
-                    'alt' => 'Dolor sit amet'
-                ]
-            ]
+                    'alt' => 'Dolor sit amet',
+                ],
+            ],
         ];
 
         $withoutCode = [
             [
                 'name' => [
-                    'common' => 'Lorem ipsum'
+                    'common' => 'Lorem ipsum',
                 ],
                 'flags' => [
                     'svg' => 'http://dfsdf.com/sdfsdf.svg',
-                    'alt' => 'Dolor sit amet'
-                ]
-            ]
+                    'alt' => 'Dolor sit amet',
+                ],
+            ],
         ];
 
         return [
             'non array (object)' => [new stdClass(), [false, null]],
             'non array (scalar number)' => [123, [false, null]],
-            'non array (scalar string)' => ["Hello", [false, null]],
+            'non array (scalar string)' => ['Hello', [false, null]],
             'without name' => [$withoutName, [false, null]],
             'without name.common' => [$withoutName2, [false, null]],
             'without cca2' => [$withoutCode, [false, null]],
@@ -80,14 +80,14 @@ class RestCountriesCountryProviderTest extends TestCase
         $completeExample = [
             [
                 'name' => [
-                    'common' => 'Lorem ipsum'
+                    'common' => 'Lorem ipsum',
                 ],
                 'cca2' => 'Dolor sit',
                 'flags' => [
                     'svg' => 'http://dfsdf.com/sdfsdf.svg',
-                    'alt' => 'Dolor sit amet'
-                ]
-            ]
+                    'alt' => 'Dolor sit amet',
+                ],
+            ],
         ];
 
         $withoutFlags = $completeExample;
@@ -138,21 +138,21 @@ class RestCountriesCountryProviderTest extends TestCase
         $this->assertEquals(
             collect([
                 [
-                    "name" => $input[0]['name']['common'],
-                    "code" => $input[0]['cca2'],
-                    "flag" => [
-                        "url" => Arr::get($input[0], 'flags.svg'),
-                        "alt" => Arr::get($input[0], 'flags.alt')
-                    ]
+                    'name' => $input[0]['name']['common'],
+                    'code' => $input[0]['cca2'],
+                    'flag' => [
+                        'url' => Arr::get($input[0], 'flags.svg'),
+                        'alt' => Arr::get($input[0], 'flags.alt'),
+                    ],
                 ],
                 [
-                    "name" => $input[1]['name']['common'],
-                    "code" => $input[1]['cca2'],
-                    "flag" => [
-                        "url" => Arr::get($input[1], 'flags.svg'),
-                        "alt" => Arr::get($input[1], 'flags.alt')
-                    ]
-                ]
+                    'name' => $input[1]['name']['common'],
+                    'code' => $input[1]['cca2'],
+                    'flag' => [
+                        'url' => Arr::get($input[1], 'flags.svg'),
+                        'alt' => Arr::get($input[1], 'flags.alt'),
+                    ],
+                ],
 
             ]),
             $output
@@ -166,7 +166,7 @@ class RestCountriesCountryProviderTest extends TestCase
             '*' => Http::response([
                 $country1 = $this->fakeCountry(),
                 $country2 = $this->fakeCountry(),
-            ])
+            ]),
         ]);
 
         // Act
@@ -176,20 +176,20 @@ class RestCountriesCountryProviderTest extends TestCase
         $this->assertEquals(
             collect([
                 [
-                    "name" => $country1['name']['common'],
-                    "code" => $country1['cca2'],
-                    "flag" => [
-                        "url" => Arr::get($country1, 'flags.svg'),
-                        "alt" => Arr::get($country1, 'flags.alt')
-                    ]
+                    'name' => $country1['name']['common'],
+                    'code' => $country1['cca2'],
+                    'flag' => [
+                        'url' => Arr::get($country1, 'flags.svg'),
+                        'alt' => Arr::get($country1, 'flags.alt'),
+                    ],
                 ],
                 [
-                    "name" => $country2['name']['common'],
-                    "code" => $country2['cca2'],
-                    "flag" => [
-                        "url" => Arr::get($country2, 'flags.svg'),
-                        "alt" => Arr::get($country2, 'flags.alt')
-                    ]
+                    'name' => $country2['name']['common'],
+                    'code' => $country2['cca2'],
+                    'flag' => [
+                        'url' => Arr::get($country2, 'flags.svg'),
+                        'alt' => Arr::get($country2, 'flags.alt'),
+                    ],
                 ],
             ]),
             $response
@@ -201,8 +201,8 @@ class RestCountriesCountryProviderTest extends TestCase
         // Prepare
         Http::fake([
             '*' => Http::response([
-                ['lorem' => 'ipsum']
-            ])
+                ['lorem' => 'ipsum'],
+            ]),
         ]);
 
         // Assert
@@ -216,7 +216,7 @@ class RestCountriesCountryProviderTest extends TestCase
     {
         // Prepare
         Http::fake([
-            '*' => Http::response([], Response::HTTP_INTERNAL_SERVER_ERROR)
+            '*' => Http::response([], Response::HTTP_INTERNAL_SERVER_ERROR),
         ]);
         $e = null;
 
@@ -242,13 +242,13 @@ class RestCountriesCountryProviderTest extends TestCase
 
         return [
             'name' => [
-                'common' => $faker->country
+                'common' => $faker->country,
             ],
             'cca2' => $faker->countryCode,
             'flags' => [
                 'svg' => $faker->url,
-                'alt' => $faker->realText(50)
-            ]
+                'alt' => $faker->realText(50),
+            ],
         ];
     }
 }
