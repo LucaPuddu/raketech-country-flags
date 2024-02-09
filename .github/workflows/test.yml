@@ -11,28 +11,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: shivammathur/setup-php@b7d1d9c9a92d8d8463ce36d7f60da34d461724f8
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
+          coverage: xdebug
       - uses: actions/checkout@v3
       - uses: php-actions/composer@v6
 
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-
       - name: Generate key
         run: php artisan key:generate
-
-      - name: Create Database
-        run: |
-          mkdir -p database
-          touch database/database.sqlite
 
       - name: Install JS dependencies
         run: npm install
       - name: Compile frontend assets
         run: npm run build
 
+      - name: Create Testing Database
+        run: |
+          mkdir -p database
+          touch database/database.sqlite
       - name: PHPUnit Tests
         uses: php-actions/phpunit@v3
         env:
