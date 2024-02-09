@@ -19,16 +19,17 @@
    alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
    ```
 7. Launch the app: `sail up -d`
-8. Migrate the db: `sail artisan migrate`
-9. Compile js assets: `sail npm install && sail npm run build`
-10. Create a free account on auth0.com
-11. Install the Auth0 Cli:
+8. Cache the configuration: `sail artisan config:cache`
+9. Migrate the db: `sail artisan migrate`
+10. Compile js assets: `sail npm install && sail npm run build`
+11. Create a free account on auth0.com
+12. Install the Auth0 Cli:
    ```shell
    curl -sSfL https://raw.githubusercontent.com/auth0/auth0-cli/main/install.sh | sh -s -- -b .
    sudo mv ./auth0 /usr/local/bin
    ```
-12. Login to Auth0 via the CLI: `auth0 login`
-13. Create a new Auth0 regular application:
+13. Login to Auth0 via the CLI: `auth0 login`
+14. Create a new Auth0 regular application:
    ```shell
    auth0 apps create \
      --name "My Laravel Application" \
@@ -40,7 +41,7 @@
      --no-input \
      --json > .auth0.app.json 
    ```
-14. Create a new Auth0 API (if you already have an API with the same identifier, skip this step):
+15. Create a new Auth0 API (if you already have an API with the same identifier, skip this step):
     ```shell
     auth0 apis create \
       --name "My Laravel Application API" \
@@ -49,7 +50,7 @@
       --no-input \
       --json > .auth0.api.json
     ```
-15. Visit `http://localhost`, login/signup with Auth0, and you should be redirected to the homepage.
+16. Visit `http://localhost`, login/signup with Auth0, and you should be redirected to the homepage.
 
 ## Country APIs
 
