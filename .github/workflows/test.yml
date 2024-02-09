@@ -31,7 +31,7 @@ jobs:
       - name: Install JS dependencies
         run: npm install
       - name: Compile frontend assets
-        run: npm run prod
+        run: npm run build
 
       - name: PHPUnit Tests
         uses: php-actions/phpunit@v3
